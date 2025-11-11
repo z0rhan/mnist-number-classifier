@@ -4,20 +4,20 @@ import numpy as np
 class Linear:
     def __init__(self,
                  input_dim: int, output_dim: int,
-                 intial_weights=None, initial_biases=None):
+                 initial_weights=None, initial_biases=None):
         """
         input_dim = dimension of input data
         output_dim = number of neurons in next layer
         weights = np.array of size (output_dim, input_dim)
         biases = np.array of size (output_dim, )
         """
-        if intial_weights is None:
-            intial_weights = np.random.randn(output_dim, input_dim)
+        if initial_weights is None:
+            initial_weights = np.random.randn(output_dim, input_dim)
 
         if initial_biases is None:
             initial_biases = np.random.randn(output_dim)
 
-        self.__weights = intial_weights
+        self.__weights = initial_weights
         self.__biases = initial_biases
         self.__input_dim = input_dim
         self.__output_dim = output_dim
@@ -27,9 +27,6 @@ class Linear:
         input_data = np.array of size (number of input, input_dim)
         returns output = np.array of size (number of input, output_dim)
         """
-        if np.size(input_data, axis=1) != self.__input_dim:
-            raise RuntimeError("Dimensions do not match")
-
         self.__input = input_data
 
         self.__output = input_data @ self.__weights.T + self.__biases
@@ -47,7 +44,7 @@ class Linear:
 
         return self.__grad_input
 
-    def update_paramers(self, learning_rate: float):
+    def update_params(self, learning_rate: float):
         """
         learning_rate = it is what it is
         """
