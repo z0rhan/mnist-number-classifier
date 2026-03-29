@@ -1,0 +1,11 @@
+# virtual envrionment
+.venv
+
+# cahce
+__pycache__/
+
+# data
+mnist-original.mat*
+
+# model
+model.pkl
