@@ -2,6 +2,7 @@ from linear import Linear
 from tanh import Tanh
 
 import numpy as np
+import pickle
 
 
 class MLP:
@@ -49,3 +50,18 @@ class MLP:
         for layer in self.__layers:
             if hasattr(layer, "update_params"):
                 layer.update_params(learning_rate)
+
+    def save(self, filename: str):
+        """
+        save the model
+        """
+        with open(filename, "wb") as file_handler:
+            pickle.dump(self, file_handler)
+
+    @staticmethod
+    def load(filename: str):
+        """
+        load the model
+        """
+        with open(filename, "rb") as file_handler:
+            return pickle.load(file_handler)
